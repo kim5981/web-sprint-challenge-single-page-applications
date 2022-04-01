@@ -1,10 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom"
 
 export default function PizzaForm (props) {
 
     const { 
         submit,
-        change
+        change,
+        values,
+        disabled,
+        errors
     } = props;
 
     const addOrder = evt => {
@@ -12,12 +16,15 @@ export default function PizzaForm (props) {
         submit();
     }
 
+    const history = useHistory();
     const routeHome = () => {
-
+        history.push("/")
     }
 
-    const onChange = () => {
-
+    const onChange = evt => {
+        const { name, value, type, checked } = evt.target
+        const checkValue = type === "checkbox" ? checked : value
+        change(name, checkValue) 
     }
 
     return (
@@ -26,13 +33,13 @@ export default function PizzaForm (props) {
             <section className="order-greet">
                 <h2>Build-a-Pizza!</h2>
                 <div className="btn-wrap">
-                    <button id="order-button" type="submit"> add to order </button>
+                    <button id="order-button" type="submit" disabled={ disabled }> add to order </button>
                     <button className="homeBtn" onClick={ routeHome }> home </button>
                 </div>
                 <div className="errors">
-                    <p> error placeholder </p>
-                    <p> error placeholder </p>
-                    <p> error placeholder </p>
+                    <p> { errors.name } </p>
+                    <p> { errors.size } </p>
+                    <p> { errors.instructions } </p>
                 </div>
             </section>
 
@@ -48,13 +55,13 @@ export default function PizzaForm (props) {
                         name="name"
                         type="text"
                         placeholder="enter name"
-                        value=""
+                        value={ values.name }
                         onChange={ onChange }
                     />
                 </label>
 
                 <label>pizza size: 
-                    <select id="size-dropdown" name="size" value={ "" } >
+                    <select id="size-dropdown" name="size" value={ values.size } onChange= { onChange } >
                         <option value=""> -- select size -- </option>
                         <option value="s"> small </option>
                         <option value="m"> medium </option>
@@ -69,7 +76,7 @@ export default function PizzaForm (props) {
                     <input
                         type="checkbox"
                         name="pepperoni"
-                        checked=""
+                        checked= { values.pepperoni }
                         onChange={ onChange }
                     />
                 </label>
@@ -78,7 +85,7 @@ export default function PizzaForm (props) {
                     <input
                         type="checkbox"
                         name="mushroom"
-                        checked=""
+                        checked={ values.mushroom }
                         onChange={ onChange }
                     />
                 </label> 
@@ -87,7 +94,7 @@ export default function PizzaForm (props) {
                     <input
                         type="checkbox"
                         name="sausage"
-                        checked=""
+                        checked={ values.sausage }
                         onChange={ onChange }
                     />
                 </label>
@@ -96,7 +103,7 @@ export default function PizzaForm (props) {
                     <input
                         type="checkbox"
                         name="greenpepper"
-                        checked=""
+                        checked={ values.greenpepper }
                         onChange={ onChange }
                     />
                 </label>
@@ -105,7 +112,7 @@ export default function PizzaForm (props) {
                     <input
                         type="checkbox"
                         name="pineapple"
-                        checked=""
+                        checked={ values.pineapple }
                         onChange={ onChange }
                     />
                 </label>
@@ -114,7 +121,7 @@ export default function PizzaForm (props) {
                     <input
                         type="checkbox"
                         name="ham"
-                        checked=""
+                        checked={ values.ham }
                         onChange={ onChange }
                     />
                 </label>     
@@ -126,7 +133,7 @@ export default function PizzaForm (props) {
                         type="text"
                         onChange={ onChange }
                         placeholder="special instructions for your order"
-                        value=""
+                        value={ values.instructions }
                     />
                 </label>           
             </form>
