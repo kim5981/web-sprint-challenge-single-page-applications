@@ -19,7 +19,6 @@ const pizzaFormSchema = yup.object().shape({
     ham: yup.boolean(),
     instructions: yup
         .string()
-        .min(4, "instructions must be more than 5 characters long")
 })
 
 export default pizzaFormSchema;

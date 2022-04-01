@@ -3,9 +3,11 @@ import { Route, Switch } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
+
 import schema from "../src/testing/pizzaFormSchema"
 import Home from "./components/Home";
 import PizzaForm from "./components/PizzaForm";
+import Order from "./components/Order";
 
 const App = () => {
 
@@ -49,19 +51,22 @@ const App = () => {
     })
   }
 
+
   const getOrder = () => {
     axios.get("https://reqres.in/api/orders")
-      .then( res => setOrderDetails(res.data.data) )
+      .then( res => setOrderDetails( res.data.data ) )
       .catch( err => console.error( err ) )
   }
 
   const postNewOrder = newOrder => {
     axios.post("https://reqres.in/api/orders", newOrder)
       .then( res => {
-        setOrderDetails( [ res.data.data, ...orderDetails ] )
+        setOrderDetails( [ res.data.data, ...newOrder ] )
       } )
       .catch( err => console.error( err ) )
-      .finally( () => setFormValues( startInputs ) )
+      .finally( () => {
+        setFormValues( startInputs )
+      } )
   }
 
   const submitForm = () => {
@@ -82,13 +87,11 @@ const App = () => {
     schema.isValid(formValues)
     .then( valid => setDisabled( !valid ) )
   }, [ formValues ] )
-
+  
   useEffect( () => {
     getOrder();
   }, [])
 
- console.log(orderDetails);
- 
   return (
     <div className="home">
       <Switch>
@@ -99,16 +102,14 @@ const App = () => {
             change={ inputChange }
             disabled={ disabled }
             errors={ formErrors }
-          
-            
-          {
-            orderDetails.map( order => {
-              return (
-                <Order key={ order.id } details={ order }/>
-              )
-            })
-          }
           />
+
+            {orderDetails.map( order => {
+                return (
+                  <Order key={ order.id } details={ order }/>
+                )
+              })
+            }
         </Route>
 
         <Route path="/">
