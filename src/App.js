@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import schema from "../src/testing/pizzaFormSchema"
 
 import Home from "./components/Home";
 import PizzaForm from "./components/PizzaForm";

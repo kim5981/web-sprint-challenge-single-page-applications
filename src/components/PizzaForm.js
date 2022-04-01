@@ -26,7 +26,7 @@ export default function PizzaForm (props) {
             <section className="order-greet">
                 <h2>Build-a-Pizza!</h2>
                 <div className="btn-wrap">
-                    <button type="submit"> add to order </button>
+                    <button id="order-button" type="submit"> add to order </button>
                     <button className="homeBtn" onClick={ routeHome }> home </button>
                 </div>
                 <div className="errors">
