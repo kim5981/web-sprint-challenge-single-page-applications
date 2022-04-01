@@ -6,7 +6,7 @@ import PizzaForm from "./components/PizzaForm";
 
 const App = () => {
   return (
-    <>
+    <div className="home">
       <Switch>
         <Route path="/pizza">
           <PizzaForm/>
@@ -16,7 +16,7 @@ const App = () => {
           <Home/>
         </Route>
       </Switch>
-    </>
+    </div>
   );
 };
 export default App;
