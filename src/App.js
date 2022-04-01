@@ -7,7 +7,7 @@ import axios from "axios";
 import schema from "../src/testing/pizzaFormSchema"
 import Home from "./components/Home";
 import PizzaForm from "./components/PizzaForm";
-import Order from "./components/Order";
+
 
 const App = () => {
 
@@ -25,7 +25,6 @@ const App = () => {
 
   const [ formValues, setFormValues ] = useState( startInputs );
 
-  // handle errors 
   const initialErrors = {
     name: "",
     size: "",
@@ -34,7 +33,6 @@ const App = () => {
 
   const [ formErrors, setFormErrors ] = useState( initialErrors );
 
-  //validation
   const validate = (name, value) => {
     yup.reach(schema, name)
     .validate(value)
@@ -49,7 +47,6 @@ const App = () => {
     })
   }
 
-  // post order
   const [ orderDetails, setOrderDetails ] = useState( [] );
 
   const postNewOrder = newOrder => {
@@ -73,7 +70,6 @@ const App = () => {
     postNewOrder(newOrder)
   }
 
-  // disabled form values 
   const initialDisabled = true;
   const [ disabled, setDisabled ] = useState( initialDisabled );
 
@@ -87,7 +83,6 @@ const App = () => {
     <div className="home">
 
       <Switch>
-
         <Route path="/pizza">
           <PizzaForm
             values={ formValues }
@@ -96,13 +91,6 @@ const App = () => {
             disabled={ disabled }
             errors={ formErrors }
           />
-
-            {/* {orderDetails.map( order => {
-                return (
-                  <Order key={ order.id } details={ order }/>
-                )
-              })
-            } */}
         </Route>
 
         <Route path="/">

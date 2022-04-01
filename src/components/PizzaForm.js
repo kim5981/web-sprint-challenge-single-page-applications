@@ -29,7 +29,7 @@ export default function PizzaForm (props) {
 
     return (
         <>
-            {/* Greeting Div */}
+        
             <section className="order-greet">
                 <h2>Build-a-Pizza!</h2>
                 <div className="btn-wrap">
@@ -43,7 +43,6 @@ export default function PizzaForm (props) {
                 </div>
             </section>
 
-            {/*  Pizza Form : Name + Size + 6 toppings + special instructions  */}
             <form id="pizza-form">
                 <div className="customer-info">
                     <h3>What'll ya have?</h3>
@@ -132,7 +131,7 @@ export default function PizzaForm (props) {
                         name="instructions"
                         type="text"
                         onChange={ onChange }
-                        placeholder="special instructions for your order"
+                        placeholder="instructions for your order"
                         value={ values.instructions }
                     />
                 </label>           
