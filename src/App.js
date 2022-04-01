@@ -9,6 +9,9 @@ import PizzaForm from "./components/PizzaForm";
 
 const App = () => {
 
+  const initialDetails= [];
+  const [ orderDetails, setOrderDetails ] = useState( initialDetails );
+
   const startInputs = {
     name: "",
     size: "",
@@ -46,9 +49,17 @@ const App = () => {
     })
   }
 
+  const getOrder = () => {
+    axios.get("https://reqres.in/api/orders")
+      .then( res => setOrderDetails(res.data.data) )
+      .catch( err => console.error( err ) )
+  }
+
   const postNewOrder = newOrder => {
     axios.post("https://reqres.in/api/orders", newOrder)
-      .then( res => console.log( res ) )
+      .then( res => {
+        setOrderDetails( [ res.data.data, ...orderDetails ] )
+      } )
       .catch( err => console.error( err ) )
       .finally( () => setFormValues( startInputs ) )
   }
@@ -72,6 +83,12 @@ const App = () => {
     .then( valid => setDisabled( !valid ) )
   }, [ formValues ] )
 
+  useEffect( () => {
+    getOrder();
+  }, [])
+
+ console.log(orderDetails);
+ 
   return (
     <div className="home">
       <Switch>
@@ -82,6 +99,15 @@ const App = () => {
             change={ inputChange }
             disabled={ disabled }
             errors={ formErrors }
+          
+            
+          {
+            orderDetails.map( order => {
+              return (
+                <Order key={ order.id } details={ order }/>
+              )
+            })
+          }
           />
         </Route>
 
