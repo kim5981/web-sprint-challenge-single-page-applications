@@ -33,7 +33,7 @@ export default function PizzaForm (props) {
             <section className="order-greet">
                 <h2>Build-a-Pizza!</h2>
                 <div className="btn-wrap">
-                    <button id="order-button" type="submit" disabled={ disabled }> add to order </button>
+                    <button id="order-button" onSubmit={ addOrder } disabled={ disabled }> add to order </button>
                     <button className="homeBtn" onClick={ routeHome }> home </button>
                 </div>
                 <div className="errors">
@@ -44,7 +44,7 @@ export default function PizzaForm (props) {
             </section>
 
             {/*  Pizza Form : Name + Size + 6 toppings + special instructions  */}
-            <form id="pizza-form" onSubmit={ addOrder }>
+            <form id="pizza-form">
                 <div className="customer-info">
                     <h3>What'll ya have?</h3>
                 </div>

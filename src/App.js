@@ -11,9 +11,6 @@ import Order from "./components/Order";
 
 const App = () => {
 
-  const initialDetails= [];
-  const [ orderDetails, setOrderDetails ] = useState( initialDetails );
-
   const startInputs = {
     name: "",
     size: "",
@@ -28,6 +25,7 @@ const App = () => {
 
   const [ formValues, setFormValues ] = useState( startInputs );
 
+  // handle errors 
   const initialErrors = {
     name: "",
     size: "",
@@ -51,17 +49,13 @@ const App = () => {
     })
   }
 
-
-  const getOrder = () => {
-    axios.get("https://reqres.in/api/orders")
-      .then( res => setOrderDetails( res.data.data ) )
-      .catch( err => console.error( err ) )
-  }
+  // post order
+  const [ orderDetails, setOrderDetails ] = useState( [] );
 
   const postNewOrder = newOrder => {
     axios.post("https://reqres.in/api/orders", newOrder)
       .then( res => {
-        setOrderDetails( [ res.data.data, ...newOrder ] )
+        setOrderDetails( [ res.data, ...newOrder ] )
       } )
       .catch( err => console.error( err ) )
       .finally( () => {
@@ -88,13 +82,12 @@ const App = () => {
     .then( valid => setDisabled( !valid ) )
   }, [ formValues ] )
   
-  useEffect( () => {
-    getOrder();
-  }, [])
 
   return (
     <div className="home">
+
       <Switch>
+
         <Route path="/pizza">
           <PizzaForm
             values={ formValues }
@@ -104,18 +97,19 @@ const App = () => {
             errors={ formErrors }
           />
 
-            {orderDetails.map( order => {
+            {/* {orderDetails.map( order => {
                 return (
                   <Order key={ order.id } details={ order }/>
                 )
               })
-            }
+            } */}
         </Route>
 
         <Route path="/">
           <Home/>
         </Route>
       </Switch>
+
     </div>
   );
 };
