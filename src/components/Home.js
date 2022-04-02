@@ -5,10 +5,11 @@ const Home = () => {
     return (
         <>
             <div className="welcome-img">
-                <img alt="pizza box drawing"/>
+                <img id="pizzaBox" src={ pizzaBox }alt="pizza box drawing"/>
             </div>
             <div className="welcome-text">
-                <h1>Pizza da Grotto</h1>
+                <div id="grotto"> Pizza Grotto </div>
+                <div id="da"> da </div>
                 <Link to="/pizza" id="order-pizza"> Build-a-Pizza! </Link>
             </div>
         </>

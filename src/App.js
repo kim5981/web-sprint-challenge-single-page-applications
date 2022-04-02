@@ -3,10 +3,12 @@ import { Route, Switch } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
-
 import schema from "../src/testing/pizzaFormSchema"
 import Home from "./components/Home";
 import PizzaForm from "./components/PizzaForm";
+
+import "./styling/home.css";
+
 
 
 const App = () => {
@@ -53,6 +55,7 @@ const App = () => {
     axios.post("https://reqres.in/api/orders", newOrder)
       .then( res => {
         setOrderDetails( [ res.data, ...newOrder ] )
+        console.log( orderDetails )
       } )
       .catch( err => console.error( err ) )
       .finally( () => {
@@ -64,7 +67,7 @@ const App = () => {
     const newOrder ={
       name: formValues.name.trim(),
       size: formValues.size.trim(),
-      toppings: [ "pepperoni", "mushroom", "sausage", "greenpepper", "pineapple", "ham"].filter( topping => !!formValues[ topping ] ),
+      toppings: [ "pepperoni", "mushroom", "sausage", "greenpepper", "pineapple", "ham"].filter( topping => formValues[ topping ] ),
       instructions: formValues.instructions
     }
     postNewOrder(newOrder)
@@ -75,8 +78,10 @@ const App = () => {
 
   useEffect( () => {
     schema.isValid(formValues)
-    .then( valid => setDisabled( !valid ) )
-  }, [ formValues ] )
+    .then( valid => {
+      setDisabled( !valid )
+    })
+  }, [ formValues] )
   
 
   return (

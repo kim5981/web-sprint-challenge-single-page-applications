@@ -1,0 +1,162 @@
+
+body{
+    padding: 1%;
+    font-size: 1.4rem;
+    font-family: 'Patrick Hand', cursive;
+    overflow: scroll;
+}
+
+/* ------------------------ page greet styles ----------------------- */
+
+.order-greet{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#chef{
+    height: 50vh;
+    margin-left: -30%;
+    filter: drop-shadow(2px 2px 15px #0000009a);
+   }
+
+
+h2{
+    width: 80%;
+    font-size: 3.2rem;
+    color: #fcffa4;
+  text-shadow: 2px 2px 20px #faf9d8;
+  font-family: 'Fredoka One', cursive;
+}
+
+.btn-wrap{
+    margin-right: 29%;
+}
+
+button{
+    font-size: 1.4rem;
+    color: #c0a1ce;
+    padding: 8%;
+    width: 90%;
+    background-color: rgb(252, 230, 252);
+    border: none;
+  border-color: none;
+  border-radius: 10px;
+  margin: 3% 0 3% 0;
+  filter: drop-shadow(1px 1px 6px #fffbeac4);
+  font-family: 'Patrick Hand', cursive;
+  font-weight: bold;
+}
+
+
+
+/*  --------------------------- errors ------------------------------*/
+
+.errors{
+    display: flex;
+    flex-direction: column;
+    margin-right: 30%;
+    margin-top: 3%;
+}
+
+.errors p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fffcd6;
+    text-shadow: 4px 4px 6px #221f24;
+    margin-top: -2%;
+}
+
+/* ----------------- general form styling ----------------- */
+
+#form{
+    width: 45%;
+    padding: 1% 5% 5% 5%;
+    margin-left: 30%;
+    margin-top: -38%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    border: solid #c0a1ce;
+    background-color: #c0a1ce;
+    border-radius: 15px;
+    filter: drop-shadow(1px 1px 15px #fffbe4);
+}
+
+h3{
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    color: #fcffa4;
+    text-shadow: 2px 2px 20px #3333338e;
+  font-family: 'Fredoka One', cursive;
+}
+
+label{
+    font-weight: bold;
+    margin-top: 1.5%;
+    padding-right: 2.5%;
+}
+
+/*  ---------------------- dropdown ------------------- */
+
+#size-dropdown{
+    padding: .5%;
+    width: 30%;
+    background-color: rgb(254, 234, 255);
+    border-radius: 8px;
+    border: solid rgb(38, 0, 63);
+    text-align: center;
+}
+
+#pizza-size{
+    padding: 1%;
+}
+/*  -------------------- checkboxes ---------------- */
+#toppings{
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 3%;
+}
+
+input[ type= "checkbox" ] {
+    border-radius: 20px;
+    border: solid rgb(38, 0, 63);
+    padding: 1%;
+    width: 30px;
+}
+
+input[ type="checkbox" ]:checked {
+    background-color: rgb(98, 0, 128);
+    color:rgb(38, 0, 63);
+}
+
+/* ------------------- text inputs -------------- */
+input[ type=text ]{
+    height: 3vh;
+    width: 80%;
+    border-radius: 8px;
+    border: solid rgb(38, 0, 63);
+    background-color: rgb(254, 234, 255);
+    padding: .5%;
+    margin-bottom: 3%;
+}
+
+#name-input{
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+#special-text{
+    height: 5vh;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
